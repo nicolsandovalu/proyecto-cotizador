@@ -12,24 +12,10 @@ function App() {
   const [meses, setMeses] = useState(6);
   const [total, setTotal] = useState(0);
   const [pago, setPago] = useState(0);
-  const [moneda, setMoneda] = useState ('USD');
-  const [tasas, setTasas] = useState ({});
-
-
 
   useEffect (() => {
     setPago(total / meses);
   }, [total]); 
-
-
-
-useEffect(() => {
-  if (tasas && Object.keys(tasas).length > 0 && moneda && tasas[moneda]) {
-    const tasa = tasas[moneda];
-    const resultadoTotalPagar = calcularTotalPagar(cantidad * tasa, meses);
-    setTotal(resultadoTotalPagar / tasa);
-  }
-}, [cantidad, meses, moneda, tasas]);
 
 useEffect (() => {
   const resultadoTotalPagar = calcularTotalPagar (cantidad, meses);
@@ -100,7 +86,7 @@ useEffect (() => {
       />
 
      <p className='text-center my-10 text-5xl font-extrabold text-indigo-600'>
-      {formatearDinero(cantidad, moneda)}
+      {formatearDinero(cantidad)}
       </p>
 
       <h2 className='text 2xl font-extrabold text-gray-600 text-center'>
